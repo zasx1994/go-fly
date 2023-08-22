@@ -164,7 +164,7 @@ func PostKefuRegister(c *gin.Context) {
 	name := c.PostForm("name")
 	password := c.PostForm("password")
 	rePassword := c.PostForm("rePassword")
-	avator := "/static/images/4.jpg"
+	avator := "/proxy/static/images/4.jpg"
 	nickname := c.PostForm("nickname")
 	captchaCode := c.PostForm("captcha")
 	roleId := 1

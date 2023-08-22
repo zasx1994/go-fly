@@ -2,15 +2,15 @@
     <div class="mainLeftMenu">
         <div style="margin: 20px auto;">
             <el-badge :type="onlineType" is-dot class="item">
-                <el-avatar   class="mainLogo"  title="智能客服" :size="45" src="/static/images/1.jpg"></el-avatar>
+                <el-avatar   class="mainLogo"  title="智能客服" :size="45" src="/proxy/static/images/1.jpg"></el-avatar>
             </el-badge>
         </div>
-        <div class="menuLeftItem" v-on:click="openIframeUrl('/pannel')">
+        <div class="menuLeftItem" v-on:click="openIframeUrl('/proxy/pannel')">
             <i class="el-icon-platform-eleme"></i>
             <span slot="title">面板</span>
         </div>
 
-        <div class="menuLeftItem active" v-on:click="haveNewMessage='';openIframeUrl('/chat_main')">
+        <div class="menuLeftItem active" v-on:click="haveNewMessage='';openIframeUrl('/proxy/chat_main')">
             <el-badge :value="haveNewMessage" class="item">
                 <i class="el-icon-chat-dot-round"></i>
             </el-badge>
@@ -18,13 +18,13 @@
         </div>
 
 
-        <div style="display: none" class="menuLeftItem" v-on:click="openIframeUrl('/setting_deploy')">
+        <div style="display: none" class="menuLeftItem" v-on:click="openIframeUrl('/proxy/setting_deploy')">
             <i class="el-icon-notebook-2"></i>
             <span slot="title">对接</span>
         </div>
 
 
-        <div  class="menuLeftItem"  v-on:click="openIframeUrl('/setting')">
+        <div  class="menuLeftItem"  v-on:click="openIframeUrl('/proxy/setting')">
             <i class="el-icon-setting"></i>
             <span slot="title">设置</span>
         </div>

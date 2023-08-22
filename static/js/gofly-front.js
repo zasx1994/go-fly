@@ -25,7 +25,7 @@ GOFLY.init=function(config){
     if (typeof config.GOFLY_URL!="undefined"){
         this.GOFLY_URL=config.GOFLY_URL.replace(/([\w\W]+)\/$/,"$1");
     }
-    this.dynamicLoadCss(this.GOFLY_URL+"/static/css/gofly-front.css?v=1");
+    this.dynamicLoadCss(this.GOFLY_URL+"/proxy/static/css/gofly-front.css?v=1");
 
     if (typeof config.GOFLY_KEFU_ID!="undefined"){
         this.GOFLY_KEFU_ID=config.GOFLY_KEFU_ID;
@@ -50,7 +50,7 @@ GOFLY.init=function(config){
     this.GOFLY_EXTRA.host=document.location.href;
     this.GOFLY_EXTRA=JSON.stringify(_this.GOFLY_EXTRA);
 
-    this.dynamicLoadJs(this.GOFLY_URL+"/assets/js/functions.js?v=1",function(){
+    this.dynamicLoadJs(this.GOFLY_URL+"/proxy/assets/js/functions.js?v=1",function(){
         if (typeof config.GOFLY_LANG!="undefined"){
             _this.GOFLY_LANG=config.GOFLY_LANG;
         }else{
@@ -165,7 +165,7 @@ GOFLY.dynamicLoadJs=function(url, callback){
 
 GOFLY.getNotice=function(){
     var _this=this;
-    $.get(this.GOFLY_URL+"/notice?kefu_id="+this.GOFLY_KEFU_ID,function(res) {
+    $.get(this.GOFLY_URL+"/proxy/notice?kefu_id="+this.GOFLY_KEFU_ID,function(res) {
         if(res.result.status=='offline'){
             _this.chatPageTitle="<div class='launchPointer offline'></div>";
         }else{

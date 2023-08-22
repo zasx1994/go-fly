@@ -62,8 +62,8 @@
                 </el-form-item>
                 <el-form-item label="头像"  prop="avator">
                     <el-select v-model="kefuForm.avator" placeholder="请选择头像">
-                        <el-option :label="'头像'+item" :value="'/static/images/'+item+'.jpg'" v-for="item in [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14]" v-bind:key="item">
-                            <el-avatar :size="30" :src="'/static/images/'+item+'.jpg'"></el-avatar>
+                        <el-option :label="'头像'+item" :value="'/proxy/static/images/'+item+'.jpg'" v-for="item in [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14]" v-bind:key="item">
+                            <el-avatar :size="30" :src="'/proxy/static/images/'+item+'.jpg'"></el-avatar>
                         </el-option>
                     </el-select>
                 </el-form-item>

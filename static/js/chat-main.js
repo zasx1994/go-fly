@@ -9,7 +9,7 @@ var app=new Vue({
         rightTabActive:"visitorInfo",
         users:[],
         usersMap:[],
-        server:getWsBaseUrl()+"/ws_kefu?token="+localStorage.getItem("token"),
+        server:getWsBaseUrl()+"/ws/ws_kefu?token="+localStorage.getItem("token"),
         //server:getWsBaseUrl()+"/chat_server",
         socket:null,
         socketClosed:false,
@@ -108,7 +108,7 @@ var app=new Vue({
                         confirmButtonText: '确定',
                         callback:function () {
                             localStorage.removeItem("token");
-                            window.location.href="/login";
+                            window.location.href="/proxy/login";
                         }
                     });
 
@@ -220,7 +220,7 @@ var app=new Vue({
             mes.from_id = this.kfConfig.id;
             mes.to_id = this.currentGuest;
             mes.content = this.messageContent;
-            $.post("/2/message",mes,function(res){
+            $.post("/2/kefu_message",mes,function(res){
                 _this.sendDisabled=false;
                 if(res.code!=200){
                     _this.$message({
@@ -326,7 +326,7 @@ var app=new Vue({
             let _this=this;
             $.ajax({
                 type:"get",
-                url:"/kefuinfo",
+                url:"/proxy/kefuinfo",
                 headers:{
                     "token":localStorage.getItem("token")
                 },
@@ -351,7 +351,7 @@ var app=new Vue({
             let _this=this;
             $.ajax({
                 type:"get",
-                url:"/visitors_kefu_online",
+                url:"/proxy/visitors_kefu_online",
                 headers:{
                     "token":localStorage.getItem("token")
                 },
@@ -369,7 +369,7 @@ var app=new Vue({
                         });
                     }
                     if(data.code==400){
-                        window.location.href="/login";
+                        window.location.href="/proxy/login";
                     }
                 }
             });
@@ -381,7 +381,7 @@ var app=new Vue({
                 visitor_id: this.currentGuest,
             }
             let _this=this;
-            $.get("/2/messagesPages",params,function(res){
+            $.get("/proxy/2/messagesPages",params,function(res){
                 let msgList=res.result.list;
                 if(msgList.length>=_this.messages.pagesize){
                     _this.showLoadMore=true;
@@ -453,7 +453,7 @@ var app=new Vue({
                         });
                     }
                     if(data.code==400){
-                        window.location.href="/login";
+                        window.location.href="/proxy/login";
                     }
                 }
             });
@@ -463,7 +463,7 @@ var app=new Vue({
             let _this=this;
             $.ajax({
                 type:"get",
-                url:"/visitor",
+                url:"/proxy/visitor",
                 data:{visitorId:vid},
                 headers:{
                     "token":localStorage.getItem("token")
@@ -514,7 +514,7 @@ var app=new Vue({
             let _this=this;
             $.ajax({
                 type:"get",
-                url:"/2/message_close",
+                url:"/proxy/2/message_close",
                 data:{visitor_id:visitorId},
                 headers:{
                     "token":localStorage.getItem("token")
@@ -550,7 +550,7 @@ var app=new Vue({
             let _this=this;
             $.ajax({
                 type:"get",
-                url:"/visitors",
+                url:"/proxy/visitors",
                 data:{page:page},
                 headers:{
                     "token":localStorage.getItem("token")
@@ -794,7 +794,7 @@ var app=new Vue({
         //获取快捷回复
         getReplys(){
             var _this=this;
-            this.sendAjax("/replys","get",{},function(result){
+            this.sendAjax("/proxy/replys","get",{},function(result){
                 _this.replys=result;
             });
         },
@@ -850,7 +850,7 @@ var app=new Vue({
         //获取黑名单
         getIpblacks(){
             var _this=this;
-            this.sendAjax("/ipblacks","get",{},function(result){
+            this.sendAjax("/proxy/ipblacks","get",{},function(result){
                 _this.ipBlacks=result;
             });
         },
@@ -858,7 +858,7 @@ var app=new Vue({
         delIpblack(ip){
             let _this=this;
             this.sendAjax("/ipblack?ip="+ip,"DELETE",{ip:ip},function(result){
-                _this.sendAjax("/ipblacks","get",{},function(result){
+                _this.sendAjax("/proxy/ipblacks","get",{},function(result){
                     _this.ipBlacks=result;
                 });
             });

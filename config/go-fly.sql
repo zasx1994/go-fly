@@ -1,4 +1,4 @@
-DROP TABLE IF EXISTS `user`|
+DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user` (
  `id` int(11) NOT NULL AUTO_INCREMENT,
  `name` varchar(50) NOT NULL DEFAULT '',
@@ -10,12 +10,12 @@ CREATE TABLE `user` (
  `avator` varchar(100) NOT NULL DEFAULT '',
  PRIMARY KEY (`id`),
  UNIQUE KEY `idx_name` (`name`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8|
-TRUNCATE TABLE `user`|
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+TRUNCATE TABLE `user`;
 INSERT INTO `user` (`id`, `name`, `password`, `nickname`, `created_at`, `updated_at`, `deleted_at`, `avator`) VALUE
-(1, 'kefu2', '202cb962ac59075b964b07152d234b70', '智能客服系统', '2020-06-27 19:32:41', '2020-07-04 09:32:20', NULL, '/static/images/4.jpg')|
+(1, 'kefu2', 'E10ADC3949BA59ABBE56E057F20F883E', '智能客服系统', '2020-06-27 19:32:41', '2020-07-04 09:32:20', NULL, '/proxy/static/images/4.jpg');
 
-DROP TABLE IF EXISTS `visitor`|
+DROP TABLE IF EXISTS `visitor`;
 CREATE TABLE `visitor` (
  `id` int(11) NOT NULL AUTO_INCREMENT,
  `name` varchar(50) NOT NULL DEFAULT '',
@@ -35,9 +35,9 @@ CREATE TABLE `visitor` (
  UNIQUE KEY `visitor_id` (`visitor_id`),
  KEY `to_id` (`to_id`),
  KEY `idx_update` (`updated_at`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8|
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-DROP TABLE IF EXISTS `message`|
+DROP TABLE IF EXISTS `message`;
 CREATE TABLE `message` (
  `id` int(11) NOT NULL AUTO_INCREMENT,
  `kefu_id` varchar(100) NOT NULL DEFAULT '',
@@ -51,30 +51,30 @@ CREATE TABLE `message` (
  PRIMARY KEY (`id`),
  KEY `kefu_id` (`kefu_id`),
  KEY `visitor_id` (`visitor_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4|
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-DROP TABLE IF EXISTS `user_role`|
+DROP TABLE IF EXISTS `user_role`;
 CREATE TABLE `user_role` (
  `id` int(11) NOT  NULL AUTO_INCREMENT,
  `user_id` int(11) NOT NULL DEFAULT '0',
  `role_id` int(11) NOT NULL DEFAULT '0',
  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8|
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 INSERT INTO `user_role` (`id`, `user_id`, `role_id`) VALUE
-(1, 1, 1)|
+(1, 1, 1);
 
-DROP TABLE IF EXISTS `role`|
+DROP TABLE IF EXISTS `role`;
 CREATE TABLE `role` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(100) NOT NULL DEFAULT '',
   `method` varchar(100) NOT NULL DEFAULT '',
   `path` varchar(2048) NOT NULL DEFAULT '',
    PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8|
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 INSERT INTO `role` (`id`, `name`, `method`, `path`) VALUES
-(1, '普通客服', '*', '*')|
+(1, '普通客服', '*', '*');
 
-DROP TABLE IF EXISTS `welcome`|
+DROP TABLE IF EXISTS `welcome`;
 CREATE TABLE `welcome` (
  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
  `user_id` varchar(100) NOT NULL DEFAULT '',
@@ -85,13 +85,13 @@ CREATE TABLE `welcome` (
  PRIMARY KEY (`id`),
  KEY `user_id` (`user_id`),
  KEY `keyword` (`keyword`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8|
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 INSERT INTO `welcome` (`id`, `user_id`, `content`, `is_default`, `ctime`, `keyword`) VALUES
-(NULL, 'kefu2', '我暂时离线，留言已转发到我的邮箱，稍后回复~', 1, '2020-08-24 02:57:49','offline')|
+(NULL, 'kefu2', '我暂时离线，留言已转发到我的邮箱，稍后回复~', 1, '2020-08-24 02:57:49','offline');
 INSERT INTO `welcome` (`id`, `user_id`, `content`, `is_default`, `ctime`, `keyword`) VALUES
-(NULL, 'kefu2', '请问有什么可以帮您？', 0, '2020-08-24 02:57:49','welcome')|
+(NULL, 'kefu2', '请问有什么可以帮您？', 0, '2020-08-24 02:57:49','welcome');
 
-DROP TABLE IF EXISTS `ipblack`|
+DROP TABLE IF EXISTS `ipblack`;
 CREATE TABLE `ipblack` (
  `id` int(11) NOT NULL AUTO_INCREMENT,
  `ip` varchar(100) NOT NULL DEFAULT '',
@@ -99,9 +99,9 @@ CREATE TABLE `ipblack` (
  `kefu_id` varchar(100) NOT NULL DEFAULT '',
  PRIMARY KEY (`id`),
  UNIQUE KEY `ip` (`ip`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8|
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-DROP TABLE IF EXISTS `config`|
+DROP TABLE IF EXISTS `config`;
 CREATE TABLE `config` (
  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
  `conf_name` varchar(255) NOT NULL DEFAULT '',
@@ -109,12 +109,11 @@ CREATE TABLE `config` (
  `conf_value` varchar(255) NOT NULL DEFAULT '',
  PRIMARY KEY (`id`),
  UNIQUE KEY `conf_key` (`conf_key`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8|
-INSERT INTO `config` (`id`, `conf_name`, `conf_key`, `conf_value`) VALUES (NULL, '发送通知邮件(SMTP地址)', 'NoticeEmailSmtp', '')|
-INSERT INTO `config` (`id`, `conf_name`, `conf_key`, `conf_value`) VALUES (NULL, '发送通知邮件(邮箱)', 'NoticeEmailAddress', '')|
-INSERT INTO `config` (`id`, `conf_name`, `conf_key`, `conf_value`) VALUES (NULL, '发送通知邮件(密码)', 'NoticeEmailPassword', '')|
-INSERT INTO `config` (`id`, `conf_name`, `conf_key`, `conf_value`) VALUES (NULL, '发送通知邮件(密码)', 'NoticeEmailPassword', '')|
-DROP TABLE IF EXISTS `about`|
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+INSERT INTO `config` (`id`, `conf_name`, `conf_key`, `conf_value`) VALUES (NULL, '发送通知邮件(SMTP地址)', 'NoticeEmailSmtp', '');
+INSERT INTO `config` (`id`, `conf_name`, `conf_key`, `conf_value`) VALUES (NULL, '发送通知邮件(邮箱)', 'NoticeEmailAddress', '');
+INSERT INTO `config` (`id`, `conf_name`, `conf_key`, `conf_value`) VALUES (NULL, '发送通知邮件(密码)', 'NoticeEmailPassword', '');
+DROP TABLE IF EXISTS `about`;
 CREATE TABLE `about` (
   `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   `title_cn` varchar(255) NOT NULL DEFAULT '',
@@ -129,17 +128,17 @@ CREATE TABLE `about` (
   `page` varchar(50) NOT NULL DEFAULT '',
 PRIMARY KEY (`id`),
 UNIQUE KEY `page` (`page`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8|
-DROP TABLE IF EXISTS `reply_group`|
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+DROP TABLE IF EXISTS `reply_group`;
 CREATE TABLE `reply_group` (
  `id` int(11) NOT NULL AUTO_INCREMENT,
  `group_name` varchar(50) NOT NULL DEFAULT '',
  `user_id` varchar(50) NOT NULL DEFAULT '',
  PRIMARY KEY (`id`),
  KEY `user_id` (`user_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8|
-INSERT INTO `reply_group` (`id`, `group_name`, `user_id`) VALUES (NULL, '常见问题', 'kefu2')|
-DROP TABLE IF EXISTS `reply_item`|
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+INSERT INTO `reply_group` (`id`, `group_name`, `user_id`) VALUES (NULL, '常见问题', 'kefu2');
+DROP TABLE IF EXISTS `reply_item`;
 CREATE TABLE `reply_item` (
  `id` int(11) NOT NULL AUTO_INCREMENT,
  `content` varchar(1024) NOT NULL DEFAULT '',
@@ -149,8 +148,8 @@ CREATE TABLE `reply_item` (
  PRIMARY KEY (`id`),
  KEY `user_id` (`user_id`),
  KEY `group_id` (`group_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8|
-DROP TABLE IF EXISTS `land_page`|
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+DROP TABLE IF EXISTS `land_page`;
 CREATE TABLE `land_page` (
   `id` int(11) NOT NULL,
   `title` varchar(125) NOT NULL DEFAULT '',
@@ -159,18 +158,18 @@ CREATE TABLE `land_page` (
   `language` varchar(50) NOT NULL DEFAULT '',
   `page_id` varchar(50) NOT NULL DEFAULT '',
    PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci|
-DROP TABLE IF EXISTS `language`|
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+DROP TABLE IF EXISTS `language`;
 CREATE TABLE `language` (
   `id` int(11) NOT NULL,
   `country` varchar(100) COLLATE utf8mb4_general_ci NOT NULL DEFAULT '',
   `short_key` varchar(100) COLLATE utf8mb4_general_ci NOT NULL DEFAULT ''
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci|
-INSERT INTO `language` (`id`, `country`, `short_key`) VALUES (1, '中文简体', 'zh-cn')|
-INSERT INTO `language` (`id`, `country`, `short_key`) VALUES (2, '正體中文', 'zh-tw')|
-INSERT INTO `language` (`id`, `country`, `short_key`) VALUES (3, 'English', 'en_us')|
-INSERT INTO `language` (`id`, `country`, `short_key`) VALUES (4, '日本語', 'ja_jp')|
-DROP TABLE IF EXISTS `user_client`|
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+INSERT INTO `language` (`id`, `country`, `short_key`) VALUES (1, '中文简体', 'zh-cn');
+INSERT INTO `language` (`id`, `country`, `short_key`) VALUES (2, '正體中文', 'zh-tw');
+INSERT INTO `language` (`id`, `country`, `short_key`) VALUES (3, 'English', 'en_us');
+INSERT INTO `language` (`id`, `country`, `short_key`) VALUES (4, '日本語', 'ja_jp');
+DROP TABLE IF EXISTS `user_client`;
 CREATE TABLE `user_client` (
  `id` int(11) NOT NULL AUTO_INCREMENT,
  `kefu` varchar(100) NOT NULL DEFAULT '',
@@ -178,4 +177,4 @@ CREATE TABLE `user_client` (
  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
  UNIQUE KEY `idx_user` (`kefu`,`client_id`),
  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8|
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;

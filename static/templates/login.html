@@ -134,7 +134,7 @@
                         data.username = _this.kefuForm.username;
                         data.password = _this.kefuForm.password;
                         _this.loading = true;
-                        $.post("/check", data, function (data) {
+                        $.post("/proxy/check", data, function (data) {
                             if (data.code == 200) {
                                 _this.$message({
                                     message: data.msg,
@@ -143,7 +143,7 @@
                                 localStorage.setItem("token",data.result.token);
                                 localStorage.setItem("ref_token",data.result.ref_token);
                                 localStorage.setItem("create_time",data.result.create_time);
-                                window.location.href="/main";
+                                window.location.href="/proxy/main";
                             } else {
                                 _this.$message({
                                     message: data.msg,

@@ -94,7 +94,7 @@ var faceTitles = ["[微笑]", "[嘻嘻]", "[哈哈]", "[可爱]", "[可怜]", "[
 function placeFace() {
     var faces=[];
     for(var i=0;i<faceTitles.length;i++){
-        faces[faceTitles[i]]="/static/images/face/"+i+".gif";
+        faces[faceTitles[i]]="/proxy/static/images/face/"+i+".gif";
     }
     return faces;
 }
@@ -129,49 +129,49 @@ function replaceAttachment(str){
         var imgSrc="";
         switch(info.ext){
             case ".mp3":
-                imgSrc="/static/images/ext/MP3.png";
+                imgSrc="/proxy/static/images/ext/MP3.png";
                 break;
             case ".zip":
-                imgSrc="/static/images/ext/ZIP.png";
+                imgSrc="/proxy/static/images/ext/ZIP.png";
                 break;
             case ".txt":
-                imgSrc="/static/images/ext/TXT.png";
+                imgSrc="/proxy/static/images/ext/TXT.png";
                 break;
             case ".7z":
-                imgSrc="/static/images/ext/7z.png";
+                imgSrc="/proxy/static/images/ext/7z.png";
                 break;
             case ".bpm":
-                imgSrc="/static/images/ext/BMP.png";
+                imgSrc="/proxy/static/images/ext/BMP.png";
                 break;
             case ".png":
-                imgSrc="/static/images/ext/PNG.png";
+                imgSrc="/proxy/static/images/ext/PNG.png";
                 break;
             case ".jpg":
-                imgSrc="/static/images/ext/JPG.png";
+                imgSrc="/proxy/static/images/ext/JPG.png";
                 break;
             case ".jpeg":
-                imgSrc="/static/images/ext/JPEG.png";
+                imgSrc="/proxy/static/images/ext/JPEG.png";
                 break;
             case ".pdf":
-                imgSrc="/static/images/ext/PDF.png";
+                imgSrc="/proxy/static/images/ext/PDF.png";
                 break;
             case ".doc":
-                imgSrc="/static/images/ext/DOC.png";
+                imgSrc="/proxy/static/images/ext/DOC.png";
                 break;
             case ".docx":
-                imgSrc="/static/images/ext/DOCX.png";
+                imgSrc="/proxy/static/images/ext/DOCX.png";
                 break;
             case ".rar":
-                imgSrc="/static/images/ext/RAR.png";
+                imgSrc="/proxy/static/images/ext/RAR.png";
                 break;
             case ".xlsx":
-                imgSrc="/static/images/ext/XLSX.png";
+                imgSrc="/proxy/static/images/ext/XLSX.png";
                 break;
             case ".csv":
-                imgSrc="/static/images/ext/XLSX.png";
+                imgSrc="/proxy/static/images/ext/XLSX.png";
                 break;
             default:
-                imgSrc="/static/images/ext/default.png";
+                imgSrc="/proxy/static/images/ext/default.png";
                 break;
         }
         var html= `<div onclick="window.open('`+info.path+`')" class="productCard">

@@ -54,19 +54,19 @@ KEFU.init=function(config){
     if (typeof config.KEFU_URL!="undefined"){
         this.KEFU_URL=config.KEFU_URL.replace(/([\w\W]+)\/$/,"$1");
     }
-    this.dynamicLoadCss(this.KEFU_URL+"/static/css/kefu-front.css?v="+Date.now());
-    this.dynamicLoadCss(this.KEFU_URL+"/static/css/layui/css/layui.css?v="+Date.now());
+    this.dynamicLoadCss(this.KEFU_URL+"/proxy/static/css/kefu-front.css?v="+Date.now());
+    this.dynamicLoadCss(this.KEFU_URL+"/proxy/static/css/layui/css/layui.css?v="+Date.now());
 
     var refer=document.referrer?document.referrer:"none";
     this.KEFU_EXTRA.refer=refer;
     this.KEFU_EXTRA.host=document.location.href;
     this.KEFU_EXTRA=JSON.stringify(_this.KEFU_EXTRA);
 
-    this.dynamicLoadJs(this.KEFU_URL+"/static/js/functions.js?v=1",function(){
+    this.dynamicLoadJs(this.KEFU_URL+"/proxy/static/js/functions.js?v=1",function(){
 
         _this.dynamicLoadJs("https://cdn.staticfile.org/jquery/3.6.0/jquery.min.js",function () {
             jQuery.noConflict();
-            _this.dynamicLoadJs(_this.KEFU_URL+"/static/js/layer/layer.js",function () {
+            _this.dynamicLoadJs(_this.KEFU_URL+"/proxy/static/js/layer/layer.js",function () {
                 _this.jsCallBack();
             });
         });
@@ -97,7 +97,7 @@ KEFU.showPcTips=function(){
         <div id="launchButton" class="launchButton">
             <div id="launchIcon" class="launchIcon">1</div>
                 <div class="launchButtonText">
-                    <img src="`+_this.KEFU_URL+`/static/images/wechatLogo.png"/>
+                    <img src="`+_this.KEFU_URL+`/proxy/static/images/wechatLogo.png"/>
                     <span class='flyUsername'>在线咨询</span>
                 </div>
         </div>
@@ -292,7 +292,7 @@ KEFU.layerOpen=function (width,height,offset){
     var title=`
     <div class="kfBar">
         <div class="kfBarAvator">
-            <img src="`+this.KEFU_URL+`/static/images/4.jpg" class="kfBarLogo">
+            <img src="`+this.KEFU_URL+`/proxy/static/images/4.jpg" class="kfBarLogo">
 
         </div>
         <div class="kfBarText">

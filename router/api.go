@@ -21,6 +21,8 @@ func InitApiRouter(engine *gin.Engine) {
 		v2.POST("/bindOfficial", controller.PostBindOfficial)
 		//分页查询消息
 		v2.GET("/messagesPages", controller.GetMessagespages)
+
+		v2.POST("/visitor_login", middleware.Ipblack, controller.PostVisitorLogin)
 	}
 	engine.GET("/captcha", controller.GetCaptcha)
 	engine.POST("/check", controller.LoginCheckPass)
@@ -61,7 +63,6 @@ func InitApiRouter(engine *gin.Engine) {
 	engine.GET("/visitors_online", controller.GetVisitorOnlines)
 	engine.GET("/visitors_kefu_online", middleware.JwtApiMiddleware, controller.GetKefusVisitorOnlines)
 	engine.GET("/clear_online_tcp", controller.DeleteOnlineTcp)
-	engine.POST("/visitor_login", middleware.Ipblack, controller.PostVisitorLogin)
 	//engine.POST("/visitor", controller.PostVisitor)
 	engine.GET("/visitor", middleware.JwtApiMiddleware, controller.GetVisitor)
 	engine.GET("/visitors", middleware.JwtApiMiddleware, controller.GetVisitors)

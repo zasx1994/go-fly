@@ -8,8 +8,8 @@
     <script src="https://cdn.staticfile.org/element-ui/2.15.1/index.js"></script>
     <script src="https://cdn.staticfile.org/jquery/3.6.0/jquery.min.js"></script>
 
-    <link rel="stylesheet" href="/static/css/common.css">
-    <script src="/assets/js/functions.js"></script>
+    <link rel="stylesheet" href="/proxy/static/css/common.css">
+    <script src="/proxy/assets/js/functions.js"></script>
     <style>
         html,
         body {
@@ -68,7 +68,7 @@
             adminRole:"",
             onlineType:"success",
             haveNewMessage:"",
-            iframeUrl:"/chat_main",
+            iframeUrl:"/proxy/chat_main",
         },
         methods: {
             focusWindow(){
@@ -85,7 +85,7 @@
                         //可直接打开通知notification相关联的tab窗口
                         window.focus();
                         notification.close();
-                        _this.openIframeUrl("/chat_main");
+                        _this.openIframeUrl("/proxy/chat_main");
                     });
                 });
             },
@@ -95,7 +95,7 @@
             //退出
             logout(){
                 localStorage.removeItem("token");
-                this.openIframeUrl('/login');
+                this.openIframeUrl('/proxy/login');
             },
             //跳转
             openUrl(url){
@@ -110,17 +110,17 @@
                 let _this=this;
                 $.ajax({
                     type:"post",
-                    url:"/check_auth",
+                    url:"/proxy/check_auth",
                     headers:{
                         "token":localStorage.getItem("token")
                     },
                     success: function(data) {
                         if (data.code != 200) {
-                            window.location.href="/login";
+                            window.location.href="/proxy/login";
                         } else {
                             _this.adminAvator=data.result.avator;
                             _this.adminRole=data.result.role_name;
-                            _this.iframeUrl = "/chat_main";
+                            _this.iframeUrl = "/proxy/chat_main";
                         }
                     }
                     });

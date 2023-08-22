@@ -62,7 +62,7 @@
             }
         }
     </style>
-    <link rel="icon" href="/static/images/favicon.ico">
+    <link rel="icon" href="/proxy/static/images/favicon.ico">
 </head>
 <body>
 <div id="app" class="signin">
@@ -107,7 +107,7 @@
                     phone:this.kefuForm.phone,
                     password:this.kefuForm.password,
                 };
-                $.post("/2/bindOfficial", data, function (data) {
+                $.post("/proxy/2/bindOfficial", data, function (data) {
                     if (data == "success") {
                         _this.$message({
                             message: "认证成功！",

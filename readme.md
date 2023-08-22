@@ -78,7 +78,7 @@ http://127.0.0.1:8081/chatIndex?kefu_id=kefu2
 ```
     (function(a, b, c, d) {
         let h = b.getElementsByTagName('head')[0];let s = b.createElement('script');
-        s.type = 'text/javascript';s.src = c+"/static/js/kefu-front.js";s.onload = s.onreadystatechange = function () {
+        s.type = 'text/javascript';s.src = c+"/proxy/static/js/kefu-front.js";s.onload = s.onreadystatechange = function () {
             if (!this.readyState || this.readyState === "loaded" || this.readyState === "complete") d(c);
         };h.appendChild(s);
     })(window, document,"http://127.0.0.1:8081",function(u){

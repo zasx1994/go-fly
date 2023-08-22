@@ -4,7 +4,7 @@ new Vue({
     delimiters:["<{","}>"],
     data: {
         window:window,
-        server:getWsBaseUrl()+"/ws_visitor",
+        server:getWsBaseUrl()+"/ws/ws_visitor",
         socket:null,
         msgList:[],
         msgListNum:[],
@@ -199,7 +199,7 @@ new Vue({
                 let _this=this;
                 var extra=getQuery("extra");
                 //发送消息
-                $.post("/visitor_login",{visitor_id:visitor_id,refer:REFER,to_id:to_id,extra:extra},function(res){
+                $.post("/2/visitor_login",{visitor_id:visitor_id,refer:REFER,to_id:to_id,extra:extra},function(res){
                     if(res.code!=200){
                         _this.$message({
                             message: res.msg,
@@ -227,7 +227,7 @@ new Vue({
                 visitor_id: this.visitor.visitor_id,
             }
             let _this=this;
-            $.get("/2/messagesPages",params,function(res){
+            $.get("/proxy/2/messagesPages",params,function(res){
                 let msgList=res.result.list;
                 if(msgList.length>=_this.messages.pagesize){
                     _this.showLoadMore=true;
@@ -284,7 +284,7 @@ new Vue({
         //获取自动欢迎语句
         getNotice : function (){
             let _this=this;
-            $.get("/notice?kefu_id="+KEFU_ID,function(res) {
+            $.get("/proxy/notice?kefu_id="+KEFU_ID,function(res) {
                 var code=res.code;
                 if(code!=200) return;
                 _this.kefuInfo=res.result;
@@ -490,10 +490,10 @@ new Vue({
         },
         //提示音
         alertSound:function(){
-            alertSound("chatMessageAudio",'/static/images/alert2.ogg');
+            alertSound("chatMessageAudio",'/proxy/static/images/alert2.ogg');
         },
         sendSound:function(){
-            alertSound("chatMessageSendAudio",'/static/images/sent.ogg');
+            alertSound("chatMessageSendAudio",'/proxy/static/images/sent.ogg');
         },
         sendAjax:function(url,method,params,callback){
             let _this=this;
