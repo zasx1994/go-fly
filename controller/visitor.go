@@ -220,6 +220,47 @@ func GetVisitorMessage(c *gin.Context) {
 // @Success 200 {object} controller.Response
 // @Failure 200 {object} controller.Response
 // @Router /visitors_online [get]
+func GetKefuOnlines(c *gin.Context) {
+	users := make([]map[string]string, 0)
+	visitorIds := make([]string, 0)
+	for uid, visitor := range ws.KefuList {
+		userInfo := make(map[string]string)
+		userInfo["uid"] = uid
+		userInfo["name"] = visitor.Name
+		userInfo["avator"] = visitor.Avator
+		users = append(users, userInfo)
+		visitorIds = append(visitorIds, visitor.Id)
+	}
+
+	//查询最新消息
+	messages := models.FindLastMessage(visitorIds)
+	temp := make(map[string]string, 0)
+	for _, mes := range messages {
+		temp[mes.VisitorId] = mes.Content
+	}
+	for _, user := range users {
+		user["last_message"] = temp[user["uid"]]
+	}
+
+	tcps := make([]string, 0)
+	for ip, _ := range clientTcpList {
+		tcps = append(tcps, ip)
+	}
+	c.JSON(200, gin.H{
+		"code": 200,
+		"msg":  "ok",
+		"result": gin.H{
+			"ws":  users,
+			"tcp": tcps,
+		},
+	})
+}
+
+// @Summary 获取在线访客列表接口
+// @Produce  json
+// @Success 200 {object} controller.Response
+// @Failure 200 {object} controller.Response
+// @Router /visitors_online [get]
 func GetVisitorOnlines(c *gin.Context) {
 	users := make([]map[string]string, 0)
 	visitorIds := make([]string, 0)

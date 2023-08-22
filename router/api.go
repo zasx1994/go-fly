@@ -61,6 +61,7 @@ func InitApiRouter(engine *gin.Engine) {
 	engine.POST("/role", middleware.JwtApiMiddleware, middleware.RbacAuth, controller.PostRole)
 
 	engine.GET("/visitors_online", controller.GetVisitorOnlines)
+	engine.GET("/kefu_online", controller.GetKefuOnlines)
 	engine.GET("/visitors_kefu_online", middleware.JwtApiMiddleware, controller.GetKefusVisitorOnlines)
 	engine.GET("/clear_online_tcp", controller.DeleteOnlineTcp)
 	//engine.POST("/visitor", controller.PostVisitor)
