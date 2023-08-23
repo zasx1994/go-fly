@@ -1,2 +1,6 @@
 .idea
 imaptool.exe
+*.log
+install.lock
+gofly.sock
+gofly.sock

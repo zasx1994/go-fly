@@ -8,5 +8,6 @@ var (
 	Upload            string  = "static/upload/"
 	Dir               string  = "config/"
 	MysqlConf         string  = Dir + "mysql.json"
+	RedisConf         string  = Dir + "redis.json"
 	IsCompireTemplate bool    = false //是否编译静态模板到二进制
 )

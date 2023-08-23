@@ -1,7 +1,9 @@
 package models
 
 import (
+	"context"
 	"fmt"
+	"github.com/go-redis/redis/v8"
 	"github.com/jinzhu/gorm"
 	"github.com/taoshihan1991/imaptool/common"
 	"log"
@@ -9,6 +11,7 @@ import (
 )
 
 var DB *gorm.DB
+var RDB *redis.Client
 
 type Model struct {
 	ID        uint       `gorm:"primary_key" json:"id"`
@@ -19,6 +22,22 @@ type Model struct {
 
 func init() {
 	Connect()
+	RDBConnect()
+}
+
+func RDBConnect() error {
+	c := common.GetRedisConf()
+	rdb := redis.NewClient(&redis.Options{
+		Addr:         c.Server + ":" + c.Port,
+		Password:     c.Password,
+		WriteTimeout: time.Second,
+		ReadTimeout:  time.Second,
+	})
+	if err := rdb.Ping(context.Background()).Err(); err != nil {
+		return err
+	}
+	RDB = rdb
+	return nil
 }
 func Connect() error {
 	mysql := common.GetMysqlConf()

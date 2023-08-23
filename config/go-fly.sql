@@ -14,6 +14,8 @@ CREATE TABLE `user` (
 TRUNCATE TABLE `user`;
 INSERT INTO `user` (`id`, `name`, `password`, `nickname`, `created_at`, `updated_at`, `deleted_at`, `avator`) VALUE
 (1, 'kefu2', 'E10ADC3949BA59ABBE56E057F20F883E', '智能客服系统', '2020-06-27 19:32:41', '2020-07-04 09:32:20', NULL, '/proxy/static/images/4.jpg');
+INSERT INTO `user` (`id`, `name`, `password`, `nickname`, `created_at`, `updated_at`, `deleted_at`, `avator`) VALUE
+(2, 'kefu3', 'E10ADC3949BA59ABBE56E057F20F883E', '智能客服系统', '2020-06-27 19:32:41', '2020-07-04 09:32:20', NULL, '/proxy/static/images/4.jpg');
 
 DROP TABLE IF EXISTS `visitor`;
 CREATE TABLE `visitor` (
@@ -62,6 +64,8 @@ CREATE TABLE `user_role` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 INSERT INTO `user_role` (`id`, `user_id`, `role_id`) VALUE
 (1, 1, 1);
+INSERT INTO `user_role` (`id`, `user_id`, `role_id`) VALUE
+(1, 2, 1);
 
 DROP TABLE IF EXISTS `role`;
 CREATE TABLE `role` (

@@ -133,7 +133,7 @@
                             var data = _this.mysql;
                             _this.loading=true;
                             _this.sendDisabled=true;
-                            $.post("/install", data, function (data) {
+                            $.post("/proxy/install", data, function (data) {
                                 if (data.code == 200) {
                                     _this.$message({
                                         message: data.msg,
