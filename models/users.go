@@ -57,6 +57,12 @@ func FindUser(username string) User {
 	DB.Where("name = ?", username).First(&user)
 	return user
 }
+
+func PickUser() User {
+	var user User
+	DB.Where("deleted_at is null").Order("rand()").Limit(1).First(&user)
+	return user
+}
 func FindUserById(id interface{}) User {
 	var user User
 	DB.Select("user.*,role.name role_name,role.id role_id").Joins("join user_role on user.id=user_role.user_id").Joins("join role on user_role.role_id=role.id").Where("user.id = ?", id).First(&user)
