@@ -33,7 +33,7 @@ var serverCmd = &cobra.Command{
 }
 
 func init() {
-	serverCmd.PersistentFlags().StringVarP(&port, "port", "p", "3570", "监听端口号")
+	serverCmd.PersistentFlags().StringVarP(&port, "port", "p", "8000", "监听端口号")
 	serverCmd.PersistentFlags().BoolVarP(&daemon, "daemon", "d", false, "是否为守护进程模式")
 }
 func run() {
